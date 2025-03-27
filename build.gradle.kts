@@ -1,6 +1,6 @@
 plugins {
     id("java")
-    id("checkstyle")  // Assurez-vous d'avoir le plugin Checkstyle
+    id("checkstyle")
 }
 
 group = "org.example"
@@ -13,6 +13,11 @@ repositories {
 dependencies {
     testImplementation(platform("org.junit:junit-bom:5.10.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
+}
+
+checkstyle {
+    toolVersion = "10.0"  // Spécifiez la version de Checkstyle si nécessaire
+    configFile = file("config/checkstyle/checkstyle.xml")
 }
 
 tasks.register<Checkstyle>("checkstyle") {
