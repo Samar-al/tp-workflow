@@ -1,6 +1,7 @@
 plugins {
     id("java")
     id("checkstyle")
+
 }
 
 group = "org.example"
@@ -15,18 +16,18 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter")
 }
 
-checkstyle {
-    toolVersion = "10.0"  // Spécifiez la version de Checkstyle si nécessaire
+tasks.test {
+    useJUnitPlatform()
+}
+
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(22))
+    }
+}
+configure<CheckstyleExtension> {
+    toolVersion = "10.3"
     configFile = file("config/checkstyle/checkstyle.xml")
 }
 
-tasks.register<Checkstyle>("checkstyle") {
-    source = sourceSets["main"].allSource + sourceSets["test"].allSource
-    include("**/*.kt")  // Si vous utilisez Kotlin
 
-    // Configuration des rapports
-    reports {
-        html.required.set(true)  // Crée le rapport HTML
-        xml.required.set(false)  // Désactive le rapport XML
-    }
-}
