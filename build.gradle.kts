@@ -1,5 +1,6 @@
 plugins {
     id("java")
+    id("checkstyle")  // Assurez-vous d'avoir le plugin Checkstyle
 }
 
 group = "org.example"
@@ -14,6 +15,13 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter")
 }
 
-tasks.test {
-    useJUnitPlatform()
+tasks.register<Checkstyle>("checkstyle") {
+    source = sourceSets["main"].allSource + sourceSets["test"].allSource
+    include("**/*.kt")  // Si vous utilisez Kotlin
+
+    // Configuration des rapports
+    reports {
+        html.required.set(true)  // Crée le rapport HTML
+        xml.required.set(false)  // Désactive le rapport XML
+    }
 }
