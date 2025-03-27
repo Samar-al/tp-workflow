@@ -4,11 +4,13 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        boolean isValid;
-        Scanner sc = new Scanner(System.in);
+        final boolean isValid;
+        final Scanner sc = new Scanner(System.in);
 
         System.out.println("Enter a credit card number: ");
-        String creditCardNumber = sc.nextLine();
+
+        final String creditCardNumber = sc.nextLine();
+
         isValid = validateCreditCardNumber(creditCardNumber);
 
         if (isValid) {
@@ -20,7 +22,7 @@ public class Main {
 
     static boolean validateCreditCardNumber(String nbCreditCard) {
         // Supprimer les espaces et les caractères non numériques
-        String cardNumber = nbCreditCard.replaceAll("[^0-9]", "");
+        final String cardNumber = nbCreditCard.replaceAll("[^0-9]", "");
 
         // Vérifier la longueur du numéro de carte
         if (cardNumber.length() < 13 || cardNumber.length() > 19) {
@@ -28,10 +30,10 @@ public class Main {
         }
 
         // Inverser les chiffres
-        String reversedCardNumber = reverseCreditCardNumber(cardNumber);
+        final String reversedCardNumber = reverseCreditCardNumber(cardNumber);
 
         // Appeler la fonction pour doubler et sommer les chiffres
-        int sum = doubleAndSumDigits(reversedCardNumber);
+        final int sum = doubleAndSumDigits(reversedCardNumber);
 
         // Si la somme est un multiple de 10, le numéro de carte est valide
         return sum % 10 == 0;
@@ -39,7 +41,7 @@ public class Main {
 
     // Fonction pour inverser le numéro de carte
     private static String reverseCreditCardNumber(String cardNumber) {
-        StringBuilder reversedCreditCard = new StringBuilder();
+        final StringBuilder reversedCreditCard = new StringBuilder();
 
         for (int i = cardNumber.length() - 1; i >= 0; i--) {
             reversedCreditCard.append(cardNumber.charAt(i));
