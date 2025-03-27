@@ -1,9 +1,9 @@
 package tp.workflow.bo;
 
 public class Article {
-    private String name;
-    private double unitPrice;
-    private int quantity;
+    private final String name;
+    private final double unitPrice;
+    private final int quantity;
 
     public Article(String name, double unitPrice, int quantity) {
         this.name = name;
