@@ -6,7 +6,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MainTest {
     @Test
-    void testSimpleAddition() {
-        assertEquals(2, 1 + 1);
+    public void testSquare() {
+        assertEquals(25, Main.square(5));
+        assertEquals(0, Main.square(0));
+        assertEquals(4, Main.square(-2));
     }
 }
