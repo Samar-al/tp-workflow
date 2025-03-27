@@ -1,9 +1,26 @@
-package tpworkflow;
+  package tpworkflow;
 
-import java.util.Scanner;
+  import tp.workflow.bo.Article;
+  import tp.workflow.service.InvoiceCalculator;
 
-public class Main {
+  import java.util.ArrayList;
+  import java.util.List;
+
+  import java.util.Scanner;
+
+  public class Main {
     public static void main(String[] args) {
+
+        // Fonction facture calcul total
+        final  List<Article> articles = new ArrayList<>();
+        articles.add(new Article("Clavier", 30.0, 2));
+        articles.add(new Article("Souris", 15.0, 1));
+        articles.add(new Article("Écran", 200.0, 1));
+
+        final double total = InvoiceCalculator.calculateTotalInvoice(articles, 100.0, 0.10); // 10% de réduction si > 100€
+        System.out.printf("Montant total à payer : %.2f €%n", total);
+
+        // Fonction validation de carte de credit
         final boolean isValid;
         final Scanner sc = new Scanner(System.in);
 
@@ -48,6 +65,7 @@ public class Main {
         }
 
         return reversedCreditCard.toString();
+
     }
 
     // Fonction pour doubler et sommer les chiffres
@@ -70,4 +88,4 @@ public class Main {
         }
         return sum;
     }
-}
+  }
