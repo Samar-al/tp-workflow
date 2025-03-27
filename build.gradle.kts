@@ -1,6 +1,7 @@
 plugins {
     id("java")
     id("checkstyle")
+
 }
 
 group = "org.example"
@@ -27,4 +28,5 @@ configure<CheckstyleExtension> {
     toolVersion = "10.3"
     configFile = file("config/checkstyle/checkstyle.xml")
 }
+
 
