@@ -33,7 +33,7 @@ jobs:
         run: ./gradlew test --no-daemon
 
       - name: Vérifier le code avec Checkstyle
-        run: ./gradlew checkstyleMain checkstyleTest --no-daemon
+        run: ./gradlew checkstyle --stacktrace
 
       - name: Construire l'artefact
         run: ./gradlew assemble --no-daemon
