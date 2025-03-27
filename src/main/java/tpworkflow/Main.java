@@ -14,4 +14,7 @@ public class Main {
             System.out.println("i = " + i);
         }
     }
+    public static int square(int x) {
+        return x * x;
+    }
 }

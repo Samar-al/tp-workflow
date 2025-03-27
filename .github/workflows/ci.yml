@@ -1,3 +1,4 @@
+
 name: CI pour TP Workflow (Java 22 - Gradle)
 
 on:
@@ -8,13 +9,15 @@ on:
 
 jobs:
   build-and-test:
+
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Setup JDK
+
+      - name: Set up JDK 22 (Corretto)
         uses: actions/setup-java@v3
         with:
           distribution: 'corretto'
@@ -34,3 +37,4 @@ jobs:
 
       - name: Construire l'artefact
         run: ./gradlew assemble --no-daemon
+
