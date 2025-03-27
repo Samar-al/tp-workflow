@@ -1,13 +1,14 @@
-name: Java CI with Gradle (Java 22 - Gradle)
+
+name: CI pour TP Workflow (Java 22 - Gradle)
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
-  build:
+  build-and-test:
 
     runs-on: ubuntu-latest
 
@@ -15,14 +16,25 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+
       - name: Set up JDK 22 (Corretto)
         uses: actions/setup-java@v3
         with:
           distribution: 'corretto'
           java-version: '22'
 
-      - name: Grant execute permission for Gradle wrapper
+      - name: Donner les permissions d'exécution à Gradle
         run: chmod +x gradlew
 
-      - name: Build and test with Gradle
-        run: ./gradlew build
+      - name: Vérifier et compiler le projet
+        run: ./gradlew build --no-daemon
+
+      - name: Lancer les tests
+        run: ./gradlew test --no-daemon
+
+      - name: Vérifier le code avec Checkstyle
+        run: ./gradlew checkstyleMain checkstyleTest --no-daemon
+
+      - name: Construire l'artefact
+        run: ./gradlew assemble --no-daemon
+
